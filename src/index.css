@@ -1,2 +1,24 @@
 @import "tailwindcss";
 
+
+@theme {
+    /* Colores personalizados */
+    --color-gold: #C9A84C;
+    --color-dark: #111111;
+    --color-soft-black: #1a1a1a;
+    --color-gray-dark: #2a2a2a;
+    --color-gray-medium: #888888;
+    --color-gray-light: #e5e5e5;
+    --color-offwhite: #f9f8f6;
+
+    /* Fuentes */
+    --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* Clases utilitarias adicionales si quieres (opcional) */
+body {
+    background-color: var(--color-offwhite);
+    font-family: var(--font-sans);
+}
+
+
