@@ -21,7 +21,7 @@ export const ProductCard = ({ product, whatsappNumber }: Props) => {
             {/* Contenedor imagen con relación 4:5 */}
             <div className="relative w-full aspect-3/4 flex items-center justify-center">
                 {/* Aquí luego pondrás <img src={product.imageUrl} /> */}
-                <img src={product.imageUrl} alt={product.name} className="w-full object-cover" />
+                <img src={product.imageUrl} alt={product.name} className="w-full h-full object-cover" />
                 {isOnSale && (
                     <span className="absolute top-2 left-2 bg-gold text-soft-black text-[10px] font-medium px-2 py-0.5 rounded tracking-wide z-10">
                         OFERTA

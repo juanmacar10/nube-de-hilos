@@ -18,20 +18,9 @@ export const HomePage = () => {
         ? visibleProducts
         : visibleProducts.filter(p => p.onSale === true);
 
-    if (isLoading) {
-        return (
-            <div className="bg-offwhite min-h-screen flex items-center justify-center">
-                <div className="text-center">
-                    <div className="w-10 h-10 border-4 border-gold border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                    <p className="text-gray-medium text-sm">Cargando mochilas...</p>
-                </div>
-            </div>
-        );
-    }
-
     return (
         <div className="bg-offwhite overflow-hidden shadow-sm">
-            {/* Hero section */}
+            {/* Hero section - siempre visible */}
             <div className="bg-dark text-center py-10 px-6 border-b border-gray-dark">
                 <p className="text-[10px] text-gold tracking-[0.2em] mb-2">ARTESANAL · ÚNICO · HECHO A MANO</p>
                 <h1 className="text-2xl font-medium text-white leading-tight tracking-wide mb-2">
@@ -48,40 +37,46 @@ export const HomePage = () => {
                 </button>
             </div>
 
-            {/* Listado de productos */}
+            {/* Listado de productos - aquí va el loader condicional */}
             <div ref={productsSectionRef} className="p-5 scroll-mt-4">
                 <div className="flex justify-between items-center mb-4">
                     <p className="text-[11px] font-medium tracking-wide text-soft-black">COLECCIÓN</p>
                     <div className="flex gap-2">
                         <button
                             onClick={() => setFilter('all')}
-                            className={`text-[10px] px-2 py-0.5 border rounded transition ${
-                                filter === 'all'
+                            className={`text-[10px] px-2 py-0.5 border rounded transition ${filter === 'all'
                                     ? 'border-gold text-gold bg-white'
                                     : 'border-gray-light text-gray-medium hover:border-gray-400'
-                            }`}
+                                }`}
                         >
                             Todas
                         </button>
                         <button
                             onClick={() => setFilter('sale')}
-                            className={`text-[10px] px-2 py-0.5 border rounded transition ${
-                                filter === 'sale'
+                            className={`text-[10px] px-2 py-0.5 border rounded transition ${filter === 'sale'
                                     ? 'border-gold text-gold bg-white'
                                     : 'border-gray-light text-gray-medium hover:border-gray-400'
-                            }`}
+                                }`}
                         >
                             Ofertas
                         </button>
                     </div>
                 </div>
 
-                {filteredProducts.length === 0 ? (
+                {/* Loader solo en el área de productos */}
+                {isLoading ? (
+                    <div className="flex justify-center items-center py-12">
+                        <div className="text-center">
+                            <div className="w-8 h-8 border-3 border-gold border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+                            <p className="text-gray-medium text-xs">Cargando productos...</p>
+                        </div>
+                    </div>
+                ) : filteredProducts.length === 0 ? (
                     <div className="text-center py-10">
                         <p className="text-gray-medium text-sm">
                             {filter === 'sale'
-                                ? 'No hay mochilas en oferta en este momento.'
-                                : 'No hay mochilas disponibles.'}
+                                ? 'No hay productos en oferta en este momento.'
+                                : 'No hay productos disponibles.'}
                         </p>
                     </div>
                 ) : (

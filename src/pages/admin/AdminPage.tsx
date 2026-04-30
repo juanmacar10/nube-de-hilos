@@ -97,7 +97,7 @@ export const AdminPage = () => {
             {/* Estadísticas (igual que antes) */}
             <div className="grid grid-cols-3 gap-2 mb-4">
                 <div className="bg-white border border-gray-light rounded-md p-3">
-                    <p className="text-[10px] text-gray-500">Total mochilas</p>
+                    <p className="text-[10px] text-gray-500">Total productos</p>
                     <p className="text-2xl font-medium">{totalProducts}</p>
                 </div>
                 <div className="bg-white border border-gray-light rounded-md p-3">
@@ -114,7 +114,7 @@ export const AdminPage = () => {
             <div className="flex justify-between items-center mb-3">
                 <p className="text-xs font-medium tracking-wide">INVENTARIO</p>
                 <button onClick={openAddForm} className="bg-gold text-soft-black px-3 py-1.5 rounded-md text-[11px] font-medium cursor-pointer">
-                    + Agregar mochila
+                    + Agregar producto
                 </button>
             </div>
 

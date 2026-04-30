@@ -98,7 +98,7 @@ export const OfertasPage = () => {
 
             {/* Lista de ofertas */}
             <div className="flex justify-between items-center mb-3">
-                <p className="text-xs font-medium tracking-wide">OFERTAS POR MOCHILA</p>
+                <p className="text-xs font-medium tracking-wide">OFERTAS POR PRODUCTOS</p>
                 <button
                     onClick={openNewOfferForm}
                     className="bg-gold text-soft-black px-3 py-1.5 rounded-md text-[11px] font-medium cursor-pointer"
@@ -113,11 +113,11 @@ export const OfertasPage = () => {
                     <p className="text-xs font-medium text-amber-800 mb-3">
                         {selectedProduct
                             ? `Aplicar oferta a "${selectedProduct.name}"`
-                            : 'Selecciona una mochila'}
+                            : 'Selecciona un producto'}
                     </p>
 
                     {!selectedProduct ? (
-                        // Paso 1: Seleccionar mochila
+                        // Paso 1: Seleccionar producto
                         <div>
                             <select
                                 className="text-xs p-2 border rounded-md w-full"
@@ -126,7 +126,7 @@ export const OfertasPage = () => {
                                     if (prod) setSelectedProduct(prod);
                                 }}
                             >
-                                <option value="">-- Seleccionar mochila --</option>
+                                <option value="">-- Seleccionar producto --</option>
                                 {products
                                     .filter(p => !p.onSale)
                                     .map(p => (
