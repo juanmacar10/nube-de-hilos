@@ -1,56 +1,33 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { ProductCard } from '../../components/products/ProductCard';
-import type { Product } from '../../types';
-
-// Datos mock
-const mockProducts: Product[] = [
-    {
-        id: '1',
-        name: 'Mochila Arena',
-        description: 'Tejido punto cadeneta, tono natural',
-        imageUrl: 'https://i.ibb.co/s96jsdDc/mohcila-de-rayas.png',
-        visible: true,
-        basePrice: 110000,
-        onSale: true,
-        salePrice: 85000,
-    },
-    {
-        id: '2',
-        name: 'Mochila Noche',
-        description: 'Hilo negro con detalles dorados',
-        imageUrl: 'https://i.ibb.co/s96jsdDc/mohcila-de-rayas.png',
-        visible: true,
-        basePrice: 120000,
-        onSale: false,
-    },
-    {
-        id: '3',
-        name: 'Mochila Gris',
-        description: 'Estilo urbano, tejido cruzado',
-        imageUrl: 'https://i.ibb.co/s96jsdDc/mohcila-de-rayas.png',
-        visible: true,
-        basePrice: 95000,
-        onSale: false,
-    },
-    {
-        id: '4',
-        name: 'Mochila Gris',
-        description: 'Estilo urbano, tejido cruzado',
-        imageUrl: 'https://i.ibb.co/s96jsdDc/mohcila-de-rayas.png',
-        visible: true,
-        basePrice: 95000,
-        onSale: false,
-    },
-];
-
-const WHATSAPP_NUMBER = '573000000000';
+import { useProducts } from '../../hooks/useProducts';
+import { WHATSAPP_NUMBER } from '../../config/constants';
 
 export const HomePage = () => {
     const productsSectionRef = useRef<HTMLDivElement>(null);
+    const { products, isLoading } = useProducts();
+    const [filter, setFilter] = useState<'all' | 'sale'>('all');
 
     const scrollToProducts = () => {
-        productsSectionRef.current?.scrollIntoView(); // Desplazamiento instantáneo por defecto
+        productsSectionRef.current?.scrollIntoView();
     };
+
+    // Filtrar productos visibles y según oferta
+    const visibleProducts = products.filter(p => p.visible === true);
+    const filteredProducts = filter === 'all'
+        ? visibleProducts
+        : visibleProducts.filter(p => p.onSale === true);
+
+    if (isLoading) {
+        return (
+            <div className="bg-offwhite min-h-screen flex items-center justify-center">
+                <div className="text-center">
+                    <div className="w-10 h-10 border-4 border-gold border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                    <p className="text-gray-medium text-sm">Cargando mochilas...</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="bg-offwhite overflow-hidden shadow-sm">
@@ -76,16 +53,44 @@ export const HomePage = () => {
                 <div className="flex justify-between items-center mb-4">
                     <p className="text-[11px] font-medium tracking-wide text-soft-black">COLECCIÓN</p>
                     <div className="flex gap-2">
-                        <span className="text-[10px] text-gray-medium px-2 py-0.5 border border-gray-light rounded cursor-pointer">Todas</span>
-                        <span className="text-[10px] text-gold px-2 py-0.5 border border-gold rounded bg-white cursor-pointer">Ofertas</span>
+                        <button
+                            onClick={() => setFilter('all')}
+                            className={`text-[10px] px-2 py-0.5 border rounded transition ${
+                                filter === 'all'
+                                    ? 'border-gold text-gold bg-white'
+                                    : 'border-gray-light text-gray-medium hover:border-gray-400'
+                            }`}
+                        >
+                            Todas
+                        </button>
+                        <button
+                            onClick={() => setFilter('sale')}
+                            className={`text-[10px] px-2 py-0.5 border rounded transition ${
+                                filter === 'sale'
+                                    ? 'border-gold text-gold bg-white'
+                                    : 'border-gray-light text-gray-medium hover:border-gray-400'
+                            }`}
+                        >
+                            Ofertas
+                        </button>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {mockProducts.map(product => (
-                        <ProductCard key={product.id} product={product} whatsappNumber={WHATSAPP_NUMBER} />
-                    ))}
-                </div>
+                {filteredProducts.length === 0 ? (
+                    <div className="text-center py-10">
+                        <p className="text-gray-medium text-sm">
+                            {filter === 'sale'
+                                ? 'No hay mochilas en oferta en este momento.'
+                                : 'No hay mochilas disponibles.'}
+                        </p>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-10 md:px-10">
+                        {filteredProducts.map(product => (
+                            <ProductCard key={product.id} product={product} whatsappNumber={WHATSAPP_NUMBER} />
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     );
