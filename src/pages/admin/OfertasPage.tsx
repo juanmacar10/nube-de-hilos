@@ -107,90 +107,9 @@ export const OfertasPage = () => {
                 </button>
             </div>
 
-            <div className="space-y-3 mb-6">
-                {activeOffers.map(product => {
-                    const discountPercent = Math.round(
-                        (1 - (product.salePrice || 0) / product.basePrice) * 100
-                    );
-                    const startDate = product.saleStartDate
-                        ? new Date(product.saleStartDate).toLocaleDateString()
-                        : '—';
-                    const endDate = product.saleEndDate
-                        ? new Date(product.saleEndDate).toLocaleDateString()
-                        : '—';
-                    return (
-                        <div key={product.id} className="bg-white border border-gray-light rounded-lg p-3">
-                            <div className="flex justify-between items-start flex-wrap gap-2">
-                                <div>
-                                    <div className="flex items-center gap-2 flex-wrap">
-                                        <p className="text-sm font-medium">{product.name}</p>
-                                        <span className="bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded-full">
-                                            activa
-                                        </span>
-                                        <span className="bg-amber-50 text-amber-700 text-[10px] px-2 py-0.5 rounded-full border border-gold">
-                                            oferta
-                                        </span>
-                                    </div>
-                                    <div className="flex items-center gap-2 mt-1">
-                                        <span className="text-lg font-medium text-gold">
-                                            ${product.salePrice?.toLocaleString()}
-                                        </span>
-                                        <span className="text-xs text-gray-400 line-through">
-                                            ${product.basePrice.toLocaleString()}
-                                        </span>
-                                        <span className="bg-amber-50 text-amber-700 text-[9px] px-1.5 py-0.5 rounded">
-                                            -{discountPercent}%
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="flex gap-1">
-                                    <button
-                                        onClick={() => editOffer(product)}
-                                        className="border border-gray-300 rounded px-2 py-1 text-[10px] hover:bg-gray-50 cursor-pointer"
-                                    >
-                                        Editar
-                                    </button>
-                                    <button
-                                        onClick={() => cancelOffer(product)}
-                                        className="border border-red-200 text-red-600 rounded px-2 py-1 text-[10px] hover:bg-red-50 cursor-pointer"
-                                    >
-                                        Quitar oferta
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="grid grid-cols-2 gap-2 mt-2 text-xs text-gray-500">
-                                <div>Inicio: {startDate}</div>
-                                <div>Fin: {endDate}</div>
-                            </div>
-                            {/* Barra de progreso si tiene fechas */}
-                            {product.saleStartDate && product.saleEndDate && (() => {
-                                const start = new Date(product.saleStartDate!).getTime();
-                                const end = new Date(product.saleEndDate!).getTime();
-                                const now = Date.now();
-                                const total = end - start;
-                                const elapsed = now - start;
-                                const percent = Math.min(100, Math.max(0, (elapsed / total) * 100));
-                                const daysLeft = Math.ceil((end - now) / (1000 * 60 * 60 * 24));
-                                return (
-                                    <div className="mt-2">
-                                        <div className="flex justify-between text-[9px] text-gray-400 mb-0.5">
-                                            <span>Tiempo restante</span>
-                                            <span>{daysLeft} días</span>
-                                        </div>
-                                        <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
-                                            <div className="h-full bg-gold rounded-full" style={{ width: `${percent}%` }} />
-                                        </div>
-                                    </div>
-                                );
-                            })()}
-                        </div>
-                    );
-                })}
-            </div>
-
             {/* Formulario (solo se muestra si showForm = true) */}
             {showForm && (
-                <div className="border border-dashed border-gold rounded-lg p-4 bg-amber-50/20">
+                <div className="border border-dashed border-gold rounded-lg p-4 bg-amber-50/20 mb-4">
                     <p className="text-xs font-medium text-amber-800 mb-3">
                         {selectedProduct
                             ? `Aplicar oferta a "${selectedProduct.name}"`
@@ -265,12 +184,8 @@ export const OfertasPage = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="flex justify-between items-center">
-                                <label className="flex items-center gap-2 text-xs">
-                                    <input type="checkbox" defaultChecked className="accent-gold" />
-                                    Activar oferta al guardar
-                                </label>
-                                <div className="flex gap-2">
+                            <div className="flex flex-col items-center">
+                                <div className="flex gap-10">
                                     <button type="button" onClick={resetForm} className="text-xs text-gray-500 underline cursor-pointer">
                                         Cancelar
                                     </button>
@@ -283,6 +198,90 @@ export const OfertasPage = () => {
                     )}
                 </div>
             )}
+
+            <div className="space-y-3 mb-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:space-y-0">
+                {activeOffers.map(product => {
+                    const discountPercent = Math.round(
+                        (1 - (product.salePrice || 0) / product.basePrice) * 100
+                    );
+                    const startDate = product.saleStartDate
+                        ? new Date(product.saleStartDate).toLocaleDateString()
+                        : '—';
+                    const endDate = product.saleEndDate
+                        ? new Date(product.saleEndDate).toLocaleDateString()
+                        : '—';
+                    return (
+                        <div key={product.id} className="bg-white border border-gray-light rounded-lg p-3">
+                            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                                <div>
+                                    <div className="flex items-center gap-2 flex-wrap">
+                                        <p className="text-sm font-medium">{product.name}</p>
+                                        <span className="bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded-full border border-green-600">
+                                            activa
+                                        </span>
+                                        <span className="bg-amber-50 text-amber-700 text-[10px] px-2 py-0.5 rounded-full border border-gold">
+                                            oferta
+                                        </span>
+                                    </div>
+                                    <div className="flex items-center gap-2 mt-1 flex-wrap">
+                                        <span className="text-lg font-medium text-gold">
+                                            ${product.salePrice?.toLocaleString()}
+                                        </span>
+                                        <span className="text-xs text-gray-400 line-through">
+                                            ${product.basePrice.toLocaleString()}
+                                        </span>
+                                        <span className="bg-amber-50 text-amber-700 text-[9px] px-1.5 py-0.5 rounded">
+                                            -{discountPercent}%
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className="grid grid-cols-2 gap-2 mt-2 text-xs text-gray-500">
+                                <div>Inicio: {startDate}</div>
+                                <div>Fin: {endDate}</div>
+                            </div>
+                            {/* Barra de progreso si tiene fechas */}
+                            {product.saleStartDate && product.saleEndDate && (() => {
+                                const start = new Date(product.saleStartDate!).getTime();
+                                const end = new Date(product.saleEndDate!).getTime();
+                                const now = Date.now();
+                                const total = end - start;
+                                const elapsed = now - start;
+                                const percent = Math.min(100, Math.max(0, (elapsed / total) * 100));
+                                const daysLeft = Math.ceil((end - now) / (1000 * 60 * 60 * 24));
+                                return (
+                                    <div className="mt-2">
+                                        <div className="flex justify-between text-[9px] text-gray-400 mb-0.5">
+                                            <span>Tiempo restante</span>
+                                            <span>{daysLeft} días</span>
+                                        </div>
+                                        <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
+                                            <div className="h-full bg-gold rounded-full" style={{ width: `${percent}%` }} />
+                                        </div>
+                                    </div>
+                                );
+                            })()}
+                            <div className="flex gap-1 mt-2 justify-end">
+                                <button
+                                    onClick={() => editOffer(product)}
+                                    className="border border-gray-300 rounded px-2 py-1 text-[10px] hover:bg-gray-50 cursor-pointer"
+                                >
+                                    Editar
+                                </button>
+                                <button
+                                    onClick={() => cancelOffer(product)}
+                                    className="border border-red-200 text-red-600 rounded px-2 py-1 text-[10px] hover:bg-red-50 cursor-pointer"
+                                >
+                                    Quitar oferta
+                                </button>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+
+            
         </div>
     );
 };
