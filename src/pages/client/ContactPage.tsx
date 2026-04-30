@@ -1,7 +1,15 @@
 // src/pages/ContactPage.tsx
+import { useState } from 'react';
 import { WHATSAPP_NUMBER } from '../../config/constants';
 
 export const ContactPage = () => {
+
+    const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+    const toggleFaq = (index: number) => {
+        setOpenFaq(openFaq === index ? null : index);
+    };
+
     const handleWhatsApp = () => {
         const message = 'Hola, vengo de la página web de Nube de Hilo. Me gustaría hacer una consulta.';
         window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
@@ -101,42 +109,44 @@ export const ContactPage = () => {
                 <div className="bg-white border border-gray-light rounded-lg p-4">
                     <p className="text-[10px] tracking-[0.2em] text-gold mb-3.5">PREGUNTAS FRECUENTES</p>
                     <div className="divide-y divide-gray-light">
-                        <div className="py-3 first:pt-0 last:pb-0">
-                            <div className="flex justify-between items-start gap-2">
-                                <p className="text-xs font-medium text-soft-black">¿Cuánto tarda en llegar mi mochila?</p>
-                                <svg width="12" height="12" viewBox="0 0 12 12" className="shrink-0 mt-0.5">
-                                    <path d="M2 4l4 4 4-4" stroke="#C9A84C" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </div>
-                            <p className="text-[11px] text-gray-medium mt-1.5">Los envíos dentro de Colombia tardan entre 2 y 5 días hábiles según la ciudad.</p>
-                        </div>
-                        <div className="py-3">
-                            <div className="flex justify-between items-start gap-2">
-                                <p className="text-xs font-medium text-soft-black">¿Puedo pedir un color personalizado?</p>
-                                <svg width="12" height="12" viewBox="0 0 12 12" className="shrink-0 mt-0.5">
-                                    <path d="M2 4l4 4 4-4" stroke="#C9A84C" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </div>
-                            <p className="text-[11px] text-gray-medium mt-1.5">¡Sí! Escríbenos por WhatsApp y coordinamos los colores disponibles para ti.</p>
-                        </div>
-                        <div className="py-3">
-                            <div className="flex justify-between items-start gap-2">
-                                <p className="text-xs font-medium text-soft-black">¿Hacen cambios o devoluciones?</p>
-                                <svg width="12" height="12" viewBox="0 0 12 12" className="shrink-0 mt-0.5">
-                                    <path d="M2 4l4 4 4-4" stroke="#C9A84C" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </div>
-                            <p className="text-[11px] text-gray-medium mt-1.5">Aceptamos cambios dentro de los 5 días siguientes a la entrega si el producto tiene defecto de fabricación.</p>
-                        </div>
-                        <div className="py-3 last:pb-0">
-                            <div className="flex justify-between items-start gap-2">
-                                <p className="text-xs font-medium text-soft-black">¿Cuáles son los métodos de pago?</p>
-                                <svg width="12" height="12" viewBox="0 0 12 12" className="shrink-0 mt-0.5">
-                                    <path d="M2 4l4 4 4-4" stroke="#C9A84C" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </div>
-                            <p className="text-[11px] text-gray-medium mt-1.5">Aceptamos transferencia bancaria, Nequi, Daviplata y pago contra entrega en Medellín.</p>
-                        </div>
+                        {[
+                            { q: "¿Cuánto tarda en llegar mi mochila?", a: "Los envíos dentro de Colombia tardan entre 2 y 5 días hábiles según la ciudad." },
+                            { q: "¿Puedo pedir un color personalizado?", a: "¡Sí! Escríbenos por WhatsApp y coordinamos los colores disponibles para ti." },
+                            { q: "¿Hacen cambios o devoluciones?", a: "Aceptamos cambios dentro de los 5 días siguientes a la entrega si el producto tiene defecto de fabricación." },
+                            { q: "¿Cuáles son los métodos de pago?", a: "Aceptamos transferencia bancaria, Nequi, Daviplata y pago contra entrega." },
+                        ].map((item, idx) => {
+                            const isOpen = openFaq === idx;
+                            return (
+                                <div key={idx} className="py-3 first:pt-0 last:pb-0">
+                                    <button
+                                        onClick={() => toggleFaq(idx)}
+                                        className="w-full flex justify-between items-start gap-2 text-left"
+                                    >
+                                        <p className="text-xs font-medium text-soft-black">{item.q}</p>
+                                        <svg
+                                            width="12"
+                                            height="12"
+                                            viewBox="0 0 12 12"
+                                            className={`shrink-0 mt-0.5 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                                            fill="none"
+                                        >
+                                            <path
+                                                d="M2 4l4 4 4-4"
+                                                stroke="#C9A84C"
+                                                strokeWidth="1.3"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            />
+                                        </svg>
+                                    </button>
+                                    {isOpen && (
+                                        <p className="text-[11px] text-gray-medium mt-1.5 leading-relaxed">
+                                            {item.a}
+                                        </p>
+                                    )}
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
