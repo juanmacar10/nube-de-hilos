@@ -16,7 +16,7 @@ export const ContactPage = () => {
     };
 
     const handleInstagram = () => {
-        window.open('https://instagram.com/tu_perfil', '_blank');
+        window.open('https://instagram.com/juanmacar15', '_blank');
     };
 
     return (
@@ -66,8 +66,8 @@ export const ContactPage = () => {
                         </div>
                         <div className="flex-1">
                             <p className="text-[11px] text-gray-medium mb-0.5">Instagram</p>
-                            <p className="text-sm font-medium text-soft-black mb-0.5">@nube_de_hilo</p>
-                            <p className="text-[10px] text-gray-medium">Mira nuestras últimas creaciones y novedades en stories.</p>
+                            <p className="text-sm font-medium text-soft-black mb-0.5">@juanmacar15</p>
+                            <p className="text-[10px] text-gray-medium">Desarrollador de aplicaciones web y móviles</p>
                         </div>
                     </div>
 
