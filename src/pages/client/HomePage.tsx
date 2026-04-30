@@ -8,7 +8,7 @@ const mockProducts: Product[] = [
         id: '1',
         name: 'Mochila Arena',
         description: 'Tejido punto cadeneta, tono natural',
-        imageUrl: '',
+        imageUrl: 'https://i.ibb.co/s96jsdDc/mohcila-de-rayas.png',
         visible: true,
         basePrice: 110000,
         onSale: true,
@@ -18,7 +18,7 @@ const mockProducts: Product[] = [
         id: '2',
         name: 'Mochila Noche',
         description: 'Hilo negro con detalles dorados',
-        imageUrl: '',
+        imageUrl: 'https://i.ibb.co/s96jsdDc/mohcila-de-rayas.png',
         visible: true,
         basePrice: 120000,
         onSale: false,
@@ -27,7 +27,16 @@ const mockProducts: Product[] = [
         id: '3',
         name: 'Mochila Gris',
         description: 'Estilo urbano, tejido cruzado',
-        imageUrl: '',
+        imageUrl: 'https://i.ibb.co/s96jsdDc/mohcila-de-rayas.png',
+        visible: true,
+        basePrice: 95000,
+        onSale: false,
+    },
+    {
+        id: '4',
+        name: 'Mochila Gris',
+        description: 'Estilo urbano, tejido cruzado',
+        imageUrl: 'https://i.ibb.co/s96jsdDc/mohcila-de-rayas.png',
         visible: true,
         basePrice: 95000,
         onSale: false,
@@ -49,7 +58,7 @@ export const HomePage = () => {
             <div className="bg-dark text-center py-10 px-6 border-b border-gray-dark">
                 <p className="text-[10px] text-gold tracking-[0.2em] mb-2">ARTESANAL · ÚNICO · HECHO A MANO</p>
                 <h1 className="text-2xl font-medium text-white leading-tight tracking-wide mb-2">
-                    Mochilas tejidas<br /><span className="text-gold">en crochet</span>
+                    Mochilas tejidas<br /><span className="text-gold font-serif">en crochet</span>
                 </h1>
                 <p className="text-xs text-gray-medium max-w-xs mx-auto mb-4 leading-relaxed">
                     Cada pieza es única, tejida a mano con dedicación y estilo propio.
@@ -72,7 +81,7 @@ export const HomePage = () => {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-2.5">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {mockProducts.map(product => (
                         <ProductCard key={product.id} product={product} whatsappNumber={WHATSAPP_NUMBER} />
                     ))}

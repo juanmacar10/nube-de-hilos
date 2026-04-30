@@ -17,7 +17,7 @@ export const ContactPage = () => {
             <div className="bg-dark text-center py-10 px-6 border-b border-gray-dark">
                 <p className="text-[10px] text-gold tracking-[0.2em] mb-2">CONTÁCTANOS</p>
                 <h1 className="text-2xl font-medium text-white leading-tight tracking-wide mb-2">
-                    Hablemos por<br /><span className="text-gold">WhatsApp</span>
+                    Hablemos por<br /><span className="text-gold font-serif">WhatsApp</span>
                 </h1>
                 <div className="w-8 h-px bg-gold mx-auto my-3" />
                 <p className="text-xs text-gray-medium max-w-xs mx-auto leading-relaxed">

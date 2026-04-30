@@ -13,12 +13,14 @@
 
     /* Fuentes */
     --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+    --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
 }
 
 /* Clases utilitarias adicionales si quieres (opcional) */
 body {
     background-color: var(--color-offwhite);
     font-family: var(--font-sans);
+
 }
 
 

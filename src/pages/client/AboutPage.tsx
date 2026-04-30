@@ -6,7 +6,7 @@ export const AboutPage = () => {
             <div className="bg-dark text-center py-11 px-6 border-b border-gray-dark">
                 <p className="text-[10px] text-gold tracking-[0.2em] mb-2.5">NUESTRA HISTORIA</p>
                 <h1 className="text-2xl font-medium text-white leading-tight tracking-wide mb-3">
-                    Cada mochila cuenta<br /><span className="text-gold">una historia</span>
+                    Cada mochila cuenta<br /><span className="text-gold font-serif">una historia</span>
                 </h1>
                 <div className="w-8 h-px bg-gold mx-auto my-3" />
                 <p className="text-xs text-gray-medium max-w-sm mx-auto leading-relaxed">
@@ -83,7 +83,7 @@ export const AboutPage = () => {
                 {/* Promesa */}
                 <div className="bg-dark rounded-lg p-5 text-center">
                     <p className="text-[10px] tracking-[0.15em] text-gold mb-2">NUESTRA PROMESA</p>
-                    <p className="text-sm text-white leading-relaxed max-w-xs mx-auto">
+                    <p className="text-sm text-white leading-relaxed max-w-xs mx-auto font-serif">
                         "Si no te enamoras de tu mochila, no ha cumplido su propósito. Cada pieza lleva nuestro nombre y nuestra dedicación."
                     </p>
                     <div className="w-7 h-px bg-gold mx-auto mt-3.5" />
