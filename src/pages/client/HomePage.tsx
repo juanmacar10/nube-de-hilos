@@ -19,7 +19,7 @@ export const HomePage = () => {
         : visibleProducts.filter(p => p.onSale === true);
 
     return (
-        <div className="bg-offwhite overflow-hidden shadow-sm">
+        <div className="bg-offwhite overflow-hidden">
             {/* Hero section - siempre visible */}
             <div className="bg-dark text-center py-10 px-6 border-b border-gray-dark">
                 <p className="text-[10px] text-gold tracking-[0.2em] mb-2">ARTESANAL · ÚNICO · HECHO A MANO</p>
