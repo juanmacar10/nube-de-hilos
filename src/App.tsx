@@ -8,6 +8,7 @@ import { AdminPage } from './pages/admin/AdminPage';
 import type { JSX } from 'react';
 import { PublicLayout } from './components/layout/PublicLayout';
 import { AdminLayout } from './components/layout/AdminLayout';
+import { OfertasPage } from './pages/admin/OfertasPage';
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const { user, loading } = useAuth();
@@ -38,6 +39,7 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
+        <Route path="/admin/ofertas" element={<ProtectedRoute><OfertasPage /></ProtectedRoute>} />
       </Route>
     </Routes>
   );
