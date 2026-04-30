@@ -32,7 +32,7 @@ export const ProductCard = ({ product, whatsappNumber }: Props) => {
                 <p className="text-xs font-medium text-soft-black mb-0.5">{product.name}</p>
                 <p className="text-[10px] text-gray-medium mb-1.5 leading-tight line-clamp-2">{product.description}</p>
                 <div className="flex items-center gap-1.5 mb-2">
-                    <span className="text-sm font-medium text-gold font-serif">${finalPrice.toLocaleString('es-CO')}</span>
+                    <span className="text-sm font-medium text-gold font-serif">${finalPrice?.toLocaleString('es-CO')}</span>
                     {isOnSale && (
                         <span className="text-[10px] text-gray-medium line-through font-serif">${originalPrice.toLocaleString('es-CO')}</span>
                     )}

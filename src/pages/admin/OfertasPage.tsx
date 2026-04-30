@@ -44,8 +44,8 @@ export const OfertasPage = () => {
             data: {
                 onSale: true,
                 salePrice: salePriceNum,
-                saleStartDate: form.saleStartDate || null,
-                saleEndDate: form.saleEndDate || null,
+                saleStartDate: form.saleStartDate || undefined,
+                saleEndDate: form.saleEndDate || undefined,
             },
         });
         resetForm();
@@ -57,9 +57,9 @@ export const OfertasPage = () => {
                 id: product.id,
                 data: {
                     onSale: false,
-                    salePrice: null,
-                    saleStartDate: null,
-                    saleEndDate: null,
+                    salePrice: undefined,
+                    saleStartDate: undefined,
+                    saleEndDate: undefined,
                 },
             });
         }
