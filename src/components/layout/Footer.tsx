@@ -8,7 +8,7 @@ export const Footer = () => {
     };
 
     const handleInstagram = () => {
-        window.open('https://www.instagram.com/nubedehilos/', '_blank');
+        window.open('https://www.instagram.com/juanmacar15', '_blank');
     };
 
     return (
