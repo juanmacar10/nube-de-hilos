@@ -22,7 +22,7 @@ export const AboutPage = () => {
                     <div className="bg-dark rounded-lg p-5 flex flex-col gap-1.5">
                         <p className="text-[10px] tracking-[0.15em] text-gold">FUNDADORA</p>
                         <div className="">
-                            <img src="../src/assets/perfil.png" alt="Fundadora" className="w-30 h-30 sm:w-20 sm:h-20 rounded-full bg-gray-dark border-2 border-gold flex items-center justify-center my-1" />
+                            <img src="/perfil.png" alt="Fundadora" className="w-30 h-30 sm:w-20 sm:h-20 rounded-full bg-gray-dark border-2 border-gold flex items-center justify-center my-1" />
                         </div>
                         <p className="text-sm font-medium text-white">Noralba Carcamo</p>
                         <p className="text-[11px] text-gray-medium leading-relaxed">Artesana apasionada por el crochet. Cada diseño nace de una idea y termina en tus manos.</p>
