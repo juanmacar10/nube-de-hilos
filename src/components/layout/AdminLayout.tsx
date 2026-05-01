@@ -17,7 +17,7 @@ export const AdminLayout = () => {
             <div className="bg-dark h-15 px-4 flex items-center justify-between border-b border-gray-dark">
                 <div className="flex items-center gap-2.5">
                     <div className="w-6.5 h-6.5 bg-gold rounded-full flex items-center justify-center text-sm font-medium text-soft-black">NH</div>
-                    <span className="text-xs sm:text-sm font-medium text-white tracking-wide">NUBE DE HILO</span>
+                    <span className="text-xs sm:text-sm font-medium text-white tracking-wide">NUBE DE HILOS</span>
                     <span className="text-[10px] text-gray-500 bg-darkgray px-2 py-0.5 rounded border border-gray-dark hidden sm:inline">admin</span>
                 </div>
                 <div className="flex gap-3.5 items-center">

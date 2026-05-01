@@ -13,7 +13,7 @@ export const Footer = () => {
 
     return (
         <footer className="bg-dark border-t border-gray-dark py-4 px-3 sm:px-6 flex justify-between items-center text-xs sm:text-sm">
-            <span className="tracking-[0.15em] text-white font-medium">NUBE DE HILO</span>
+            <span className="tracking-[0.15em] text-white font-medium">NUBE DE HILOS</span>
             <div className="flex gap-3">
                 <button
                     onClick={handleInstagram}

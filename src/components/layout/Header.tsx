@@ -30,7 +30,7 @@ export const Header = () => {
                     CONTACTO
                 </NavLink>
             </nav>
-            <div className="text-[13px] tracking-[0.18em] text-white font-medium sm:text-[20px]">NUBE DE HILO</div>
+            <div className="text-[13px] tracking-[0.18em] text-white font-medium sm:text-[20px]">NUBE DE HILOS</div>
         </header>
     );
 };
